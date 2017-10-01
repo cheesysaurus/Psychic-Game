@@ -2,19 +2,19 @@
 var alphabetString = "abcdefghijklmnopqrstuvwxyz";
 var alphabetArr = Array.from(alphabetString);
 
-//Initialize variables wins, losses, and guesses left
+//Initialize variables wins, losses, guesses left, and current guesses
 var wins = 0;
 var losses = 0;
 var guessesLeft = 9;
 var currentGuesses = [];
 
-//Assign HTML that user sees to a variable
+//Assign what is displayed to the user to a variable
 var userDisplay = document.getElementById("game-display");
 
-//When key is pressed, compare user guess with computer guess > conditions
+//When key is pressed, compare user guess with computer guess --> conditions
 document.onkeyup = function(event) {
 
-	//Store key pressed in a variable
+	//Store key that user presses in a variable
 	var userGuess = event.key.toLowerCase();
 
 	//Generate computer guess
@@ -27,21 +27,23 @@ document.onkeyup = function(event) {
 		guessesLeft = 9;
 		currentGuesses = [];
 	}
+	else {
+		//If user guess doesn't match computer guess
+		if (userGuess !== computerGuess) {
 
-	//If user guess !== computer guess
-	else if (userGuess !== computerGuess) {
+			//Decrement number of guesses left & display user's guess
+			guessesLeft--;
+			currentGuesses.push(" " + event.key);
+		}
 
-		//Decrement guesses left & display guess under "guesses so far"
-		guessesLeft--;
-		currentGuesses.push(" " + event.key);
-	}
+		//Else (if user guess matches computer guess)
+		else {
 
-	//Else (if user guess === computer guess)
-	else if (userGuess === computerGuess) {
+			//Increment wins & make computer generate another guess
+			wins++;
+			currentGuesses = [];
+		}
 
-		//Increment wins & make computer generate another guess
-		wins++;
-		currentGuesses = [];
 	}
 
 	//Update game display
