@@ -41,6 +41,7 @@ document.onkeyup = function(event) {
 
 			//Increment wins & make computer generate another guess
 			wins++;
+			guessesLeft = 9;
 			currentGuesses = [];
 		}
 
