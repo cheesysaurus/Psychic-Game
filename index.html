@@ -36,10 +36,21 @@
 		</div> <!-- ./container -->
 	</div> <!-- ./background-black -->
 
+	<!-- Button to toggle background audio -->
 	<div class="button-div">
-		<button id="play-pause"><i class="fa fa-play"></i><i class="fa fa-pause"></i></button>
+		<button id="play-pause" type="button" onclick="javascript:toggleSound();"><i class="fa fa-play"></i><i class="fa fa-pause"></i></button>
 	</div>
-	
+
+	<!-- Background audio -->
+	<audio id="audio" preload="auto">
+		<source src="./assets/audio/hypnotic-effect.mp3" type="audio/mpeg">
+	</audio>
+
+	<!-- Keystroke sound -->
+	<audio id="keystroke" preload="auto">
+		<source src="./assets/audio/keystroke-sound.mp3" type="audio/mpeg">
+	</audio>
+
 <!-- JavaScript -->
 <script type="text/javascript" src="./assets/javascript/game.js"></script>
 

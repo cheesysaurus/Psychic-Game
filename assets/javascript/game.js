@@ -1,28 +1,35 @@
-//Background audio
-var audioElement = document.createElement("audio");
-audioElement.setAttribute("src", "../audio/hypnotic-effect.mp3");
-var isPlaying = false;
+//---------//
+//  Audio  //
+//---------//
 
+// Assign background audio element to variable
+var audioElement = document.getElementById("audio");
+
+//Background audio plays on load
 window.onload = function() {
 	audioElement.play();
 }
 
 //Toggle background audio
-$("#play-pause").on("click", function() {
-	if (isPlaying) {
-		audioElement.pause();
-	} else {
+function toggleSound() {
+	if (audioElement.paused) {
 		audioElement.play();
 	}
-	audioElement.onplaying = function() {
-		isPlaying = true;
-	};
-	audioElement.onpause = function() {
-		isPlaying = false;
-	};
-});
+	else {
+		audioElement.pause();
+	}
+}
 
+//Play keystroke sound when user presses key
+document.onkeydown = function() {
+	var keystrokeSound = document.getElementById("keystroke");
+	keystrokeSound.currentTime = 0;
+	keystrokeSound.play();
+}
 
+//---------------------------------//
+// Initialize Varibles & Functions //
+//---------------------------------//
 
 //Create array of alphabet letters for computer to randomly choose from
 var alphabetString = "abcdefghijklmnopqrstuvwxyz";
@@ -35,10 +42,7 @@ var guessesLeft;
 var currentGuesses;
 var games = -1;
 
-//Assign what is displayed to the user to a variable
-var userDisplay = document.getElementById("game-display");
-
-//Functions to initialize new game
+//Define function to initialize new game
 function newGame() {
 	//Generate random letter
 	computerGuess = alphabetArr[Math.floor(Math.random() * alphabetArr.length)];
@@ -50,8 +54,12 @@ function newGame() {
 	games++;
 }
 
-//Initialize new game
+//Call function to initialize new game
 newGame();
+
+//------------//
+// Game Rules //
+//------------//
 
 //When user presses key
 document.onkeyup = function(event) {
@@ -64,7 +72,7 @@ document.onkeyup = function(event) {
 
 		//Increment losses & and ask if user wants to play again
 		losses++;
-		var loseConfirm = confirm("Oh no! Time to sharpen those mindreading skills.\nThe letter was \"" + computerGuess + "\". Would you like to play again?");
+		var loseConfirm = confirm("Uh oh! Time to sharpen those mindreading skills.\nThe letter was \"" + computerGuess + "\". Would you like to play again?");
 
 		//Whether use clicks confirm or cancel
 		if (loseConfirm || loseConfirm === false) {
@@ -103,7 +111,14 @@ document.onkeyup = function(event) {
 
 	}
 
-	//Update game display
+	//--------------//
+	// HTML Display //
+	//--------------//
+
+	//Assign what is displayed to the user to a variable
+	var userDisplay = document.getElementById("game-display");
+
+	//Write updated content
 	var html =
       "<p>Wins: " +  "<span class='display-effect'>" + wins + "</span><br /><br />" +
       "Losses: " + "<span class='display-effect'>" + losses + "</span><br /><br />" + 
@@ -111,5 +126,6 @@ document.onkeyup = function(event) {
 	  "Your guesses so far: " + "<span class='display-effect'>" + currentGuesses + "</span><br /><br />" +
 	  "<b>Score: " + "<span class='display-effect'>" + wins + "/" + games + "</span></b></p>";
 
+	//Update display
     userDisplay.innerHTML = html;
 }
