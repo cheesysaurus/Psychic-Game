@@ -4,23 +4,43 @@
 	<meta charset="UTF-8">
 	<title>Psychic Game</title>
 
-	<link rel="stylesheet" type="text/css" href="">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Quintessential|Aladin|Courgette" rel="stylesheet">
+
+	<!-- CSS -->
+	<!-- <link rel="stylesheet" type="text/css" href="./assets/css/reset.css"> -->
+	<link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 </head>
 <body>
 
-	<div>
-		<h1>The Psychic Game</h1>
+	<div class="background-black">
+		<div class="container">
 
-		<p>Guess what letter I'm thinking of:</p>
-		<p id=game-display>
-			Wins: 0<br /><br />
-			Losses: 0<br /><br />
-			Guesses Left: 9<br /><br />
-			Your guesses so far: <br /><br />
-		</p>
+			<h1>The Psychic Game</h1>
+			<p id="subheader">Guess what letter I'm thinking of...</p>
+
+			<div class="main">
+
+				<p id="game-display">
+					Wins: <span class="display-effect">0</span><br /><br />
+					Losses: <span class="display-effect">0</span><br /><br />
+					Guesses left: <span class="display-effect">9</span><br /><br />
+					Your guesses so far: <span class="display-effect"></span><br /><br />
+					<b>Score: <span class="display-effect"></span></b>
+				</p>
+
+			</div> <!-- ./main -->
+		</div> <!-- ./container -->
+	</div> <!-- ./background-black -->
+
+	<div class="button-div">
+		<button id="play-pause"><i class="fa fa-play"></i><i class="fa fa-pause"></i></button>
 	</div>
-
-<!-- External JavaScript -->
+	
+<!-- JavaScript -->
 <script type="text/javascript" src="./assets/javascript/game.js"></script>
 
 </body>
