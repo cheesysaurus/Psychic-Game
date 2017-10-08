@@ -32,8 +32,7 @@ document.onkeydown = function() {
 //---------------------------------//
 
 //Create array of alphabet letters for computer to randomly choose from
-var alphabetString = "abcdefghijklmnopqrstuvwxyz";
-var alphabetArr = Array.from(alphabetString);
+var alphabet = "abcdefghijklmnopqrstuvwxyz";
 
 //Initialize variables wins, losses, guesses left, and current guesses
 var wins = 0;
@@ -45,7 +44,7 @@ var games = -1;
 //Define function to initialize new game
 function newGame() {
 	//Generate random letter
-	computerGuess = alphabetArr[Math.floor(Math.random() * alphabetArr.length)];
+	computerGuess = alphabet[Math.floor(Math.random() * alphabet.length)];
 	console.log(computerGuess);
 	//Reset variables
 	guessesLeft = 9;
