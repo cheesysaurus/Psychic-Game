@@ -66,49 +66,58 @@ document.onkeyup = function(event) {
 	//Store key in variable
 	var userGuess = event.key.toLowerCase();
 
-	//If user runs out of guesses
-	if (guessesLeft === 0) {
-
-		//Increment losses & and ask if user wants to play again
-		losses++;
-		var loseConfirm = confirm("Uh oh! Time to sharpen those mindreading skills.\nThe letter was \"" + computerGuess + "\". Would you like to play again?");
-
-		//Whether use clicks confirm or cancel
-		if (loseConfirm || loseConfirm === false) {
-			
-			newGame();
-
-		}
-
+	// Check if letter is in the alphabet
+	var isLetter = false;
+	var alphabet = "abcdefghijklmnopqrstuvwxyz";
+	if (alphabet.includes(userGuess)) {
+		isLetter = true;
 	}
-	//Else (if user has guesses remaining)
+
+	// If user's guess is not a letter
+	if (!isLetter) {
+		return;
+	}
+	// If user's guess is a letter
 	else {
 
-		//If user did not guess letter
-		if (userGuess !== computerGuess) {
+		//If user runs out of guesses (user loses)
+		if (guessesLeft === 0) {
+		
+			//Increment losses & and ask if user wants to play again
+			losses++;
 
-			//Decrement number of guesses left & display user's guess
-			guessesLeft--;
-			currentGuesses.push(" " + event.key);
+			confirm("Uh oh! Time to sharpen those mindreading skills.\nThe letter was \"" + computerGuess + "\". Would you like to play again?");
+	
+			newGame();
+	
 		}
-
-		//Else (if user guess matches computer guess)
+		//Else (if user has guesses remaining)
 		else {
-
-			//Increment wins & ask if user wants to play again
-			wins++;
-			var winConfirm = confirm("Psychic in the house!\nThe letter was \"" + computerGuess + "\". Click OK for a new letter.");
-
-			//Whether user clicks confirm or cancel
-			if (winConfirm || winConfirm === false) {
-
-				newGame();
-
+	
+			//If user did not guess letter
+			if (userGuess !== computerGuess) {
+	
+				//Decrement number of guesses left & display user's guess
+				guessesLeft--;
+				currentGuesses.push(" " + event.key);
 			}
-
+	
+			//Else (if user guess matches computer guess)
+			else {
+	
+				//Increment wins & ask if user wants to play again
+				wins++;
+				
+				confirm("Psychic in the house!\nThe letter was \"" + computerGuess + "\". Click OK for a new letter.");
+	
+				newGame();
+	
+			}
+	
 		}
 
 	}
+	
 
 	//--------------//
 	// HTML Display //
@@ -119,7 +128,7 @@ document.onkeyup = function(event) {
 
 	//Write updated content
 	var html =
-      "<p>Wins: " +  "<span class='display-effect'>" + wins + "</span><br /><br />" +
+      "<p>Wins: " + "<span class='display-effect'>" + wins + "</span><br /><br />" +
       "Losses: " + "<span class='display-effect'>" + losses + "</span><br /><br />" + 
       "Guesses left: " + "<span class='display-effect'>" + guessesLeft + "</span><br /><br />" + 
 	  "Your guesses so far: " + "<span class='display-effect'>" + currentGuesses + "</span><br /><br />" +
